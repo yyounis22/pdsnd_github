@@ -116,6 +116,7 @@ def load_data(city, month, day):
     else:
         df=df[df['day_of_week']==day.title()]
     print(df.head())
+    print(df.describe())
 
     return df
 
