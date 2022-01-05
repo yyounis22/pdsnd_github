@@ -99,7 +99,13 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
-    df=pd.read_csv(CITY_DATA[city])
+    try:
+        df=pd.read_csv(CITY_DATA[city])
+    except:
+        print('we can not find the file you are searching for please check it and rerun the program')
+        print('the data file should be in the same directory with the program')
+        input('just press enter to close the program')
+        quit()
     df['Start Time']=pd.to_datetime(df['Start Time'])
     print(df.head())
     df['month']=df['Start Time'].dt.month
@@ -116,6 +122,7 @@ def load_data(city, month, day):
     else:
         df=df[df['day_of_week']==day.title()]
     print(df.head())
+    print(df.describe())
 
     return df
 
